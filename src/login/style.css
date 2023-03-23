@@ -1,0 +1,36 @@
+.js-login{
+}
+
+.js-login .form__element{
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.js-login .form__element input{
+  width: max-content;
+}
+
+.js-login small{
+  background-color:#d4e3ff ;
+  padding: 4px;
+}
+
+.js-login small span{
+  font-weight: bold;
+}
+
+.js-login .user-message{
+  background-color: red;
+  color: white;
+  padding: 10px;
+  margin-top: 10px;
+  width: max-content;
+}
+.js-login .user-message.display-none{
+  display: none;
+  padding: 10px;
+}
+.js-login .user-message.display-block{
+  display: block;
+}
