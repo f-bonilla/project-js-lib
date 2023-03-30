@@ -1,6 +1,5 @@
 import {logger} from './utils.js';
 import Locale from './locale.js';
-import EventsManager from './events-manager.js';
 
 const head  = document.getElementsByTagName('head')[0];
 const getStyle = (el, style)=>window.getComputedStyle(el).getPropertyValue(style);
@@ -52,10 +51,8 @@ const remove = (id, containerId, className)=>{
 const Views = (id, containerId, cssPath, html)=>{
 	const view = append(id, containerId, cssPath, html);
 	let viewDisplay = getStyle(view, 'display');
-	const events = EventsManager(view);
 	return {
-		events: events,
-		get: query=>view.querySelector(query),	
+		get: query=>query ? view.querySelector(query) : view,
 		getAll: query=>view.querySelectorAll(query),
 		show: ()=>{
 			if(getStyle(view, 'display') === 'none') view.style.display = viewDisplay;
@@ -64,7 +61,6 @@ const Views = (id, containerId, cssPath, html)=>{
 			if(getStyle(view, 'display') !== 'none') view.style.display = 'none';
 		},
 		destroy: ()=>{
-			events.destroy();
 			remove(id, containerId, html.className);
 		}
 	}

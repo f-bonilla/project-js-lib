@@ -165,14 +165,17 @@ file=$fileName"-view.js"
 touch $file
 str=""
 str=$str"import {logger} from '"$rootPath"utils.js';"$LINE_BREAK
-str=$str"import Views from '"$rootPath"views.js';"$LINE_BREAK$LINE_BREAK
+str=$str"import Views from '"$rootPath"views.js';"$LINE_BREAK
+str=$str"import EventsManager from '"$rootPath"events-manager.js';"$LINE_BREAK$LINE_BREAK
 str=$str"const "$componentName"View = (id, containerId, cssPath, html, props)=>{"$LINE_BREAK
 str=$str$TAB"const view = Views(id, containerId, cssPath, html);"$LINE_BREAK
-str=$str$TAB"//view.events.suscribe('click', e=>logger.log('CLICK!'));"$LINE_BREAK
+str=$str$TAB"const events = EventsManager(view);"$LINE_BREAK
+str=$str$TAB"events.suscribe(view.get(), 'click', e=>logger.log('CLICK!'));"$LINE_BREAK
 str=$str$TAB"return {"$LINE_BREAK
 str=$str$TAB$TAB"enable: ()=>{},"$LINE_BREAK
 str=$str$TAB$TAB"disable: ()=>{},"$LINE_BREAK
 str=$str$TAB$TAB"destroy: ()=>{"$LINE_BREAK
+str=$str$TAB$TAB$TAB"events.destroy();"$LINE_BREAK
 str=$str$TAB$TAB$TAB"view.destroy();"$LINE_BREAK
 str=$str$TAB$TAB"}"$LINE_BREAK
 str=$str$TAB"};"$LINE_BREAK
