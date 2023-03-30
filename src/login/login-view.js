@@ -23,7 +23,7 @@ const LoginView = (id, containerId, cssPath, html, sendFormCallback)=>{
 		}
 	};
 	const submitButton = view.get('#submit-form');
-	events.suscribe(submitButton, 'click', e=>submitForm(e));
+	events.suscribe(submitButton, 'click', submitForm);
 	return {
 		enable: ()=>{},
 		disable: ()=>{},
